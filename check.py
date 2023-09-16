@@ -7,7 +7,7 @@ import g4f
 import threading
 import time
 
-def process_provider(pname, results):
+def process_provider(pname, results, fastest_provider):
     try:
         print(f"[TRYING]:  {pname}")
         start_time = time.time()
@@ -17,17 +17,22 @@ def process_provider(pname, results):
             messages=[{"role": "user", "content": "Hello"}],
         )
         end_time = time.time()
+        time_taken = end_time - start_time
         results.append((pname, end_time - start_time))
-        print(f"[WORKING]: {pname}, Time taken: {end_time - start_time:.2f} seconds")
+        print(f"[WORKING]: {pname}, Time taken: {time_taken:.2f} seconds")
+        if time_taken < fastest_provider[1]:
+            fastest_provider[0] = pname
+            fastest_provider[1] = time_taken
     except Exception as e:
         print(f"[BROKEN]:  {pname}, Error: {str(e)}")
 
 providers = g4f.Provider.__all__
 
 results = []
+fastest_provider = ["", 99999]
 threads = []
 for pname in providers:
-    thread = threading.Thread(target=process_provider, args=(pname, results))
+    thread = threading.Thread(target=process_provider, args=(pname, results, fastest_provider))
     threads.append(thread)
     thread.start()
 
@@ -36,7 +41,11 @@ for thread in threads:
     thread.join()
 
 
-# Display a summary of working providers
 print("====== WORKING PROVIDERS ======")
 for pname, time_taken in results:
     print(f"{pname:<20} {time_taken:.2f}s")
+
+print("====== FASTEST PROVIDER ======")
+print(f"{fastest_provider[0]:<20} {fastest_provider[1]:.2f}s")
+
+print(f"====== {len(results)}/{len(providers)} WORKING ======")
