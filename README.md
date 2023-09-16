@@ -12,4 +12,4 @@ If any of the G4F providers would like removal, please open an Issue. Not liable
 
 ## License
 
-AGPL-3.0
+AGPL-3.0-STAR: You must GitHub star it if you use it
