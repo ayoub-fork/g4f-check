@@ -8,6 +8,8 @@ Supports multithreaded
 
 If any of the G4F providers would like removal, please open an Issue. Not liable for usage. Educational use only
 
+**NOT AFFILIATED WITH GPT4FREE OR GPT4FREE AUTHORS**
+
 ## License
 
 AGPL-3.0
