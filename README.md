@@ -4,6 +4,11 @@ Check which providers are working on [GPT4FREE](https://github.com/xtekky/gpt4fr
 
 Supports multithreaded
 
+
+## Install
+
+install pip packages: g4f
+
 ## Disclaimer
 
 If any of the G4F providers would like removal, please open an Issue. Not liable for usage. Educational use only
