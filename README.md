@@ -11,7 +11,7 @@ install pip packages: g4f
 
 ## Disclaimer
 
-If any of the G4F providers would like removal, please open an Issue. Not liable for usage. Educational use only
+If any of the G4F providers would like exclusion from the speed check, please open an Issue. Not liable for usage. Use at your own risk. Educational use only
 
 **NOT AFFILIATED WITH GPT4FREE OR GPT4FREE AUTHORS**
 
