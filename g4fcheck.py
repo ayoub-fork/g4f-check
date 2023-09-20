@@ -1,4 +1,4 @@
-# https://github.com/3571303/g4f-check
+# https://github.com/35713N/g4f-check
 # License: AGPL-3.0-Star
 
 import sys
