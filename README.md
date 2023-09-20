@@ -8,7 +8,7 @@ Supports multithreaded
 ## Install
 
 ```
-python -m pip install g4f && python -c "$(curl -fsSL https://raw.githubusercontent.com/3571303/g4f-check/main/g4fcheck.py)"
+python -m pip install g4f && python -c "$(curl -fsSL https://raw.githubusercontent.com/35713N/g4f-check/main/g4fcheck.py)"
 ```
 
 If you get any errors or the message "NO WORKING PROVIDERS 99999.00s," please manually download + run the file.
