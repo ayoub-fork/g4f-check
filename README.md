@@ -22,3 +22,5 @@ If any of the G4F providers would like exclusion from the speed check, please op
 ## License
 
 AGPL-3.0-STAR: You must GitHub star it if you use it
+
+### Created by 35713N. AGPL
