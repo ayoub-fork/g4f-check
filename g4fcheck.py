@@ -6,9 +6,12 @@ import g4f
 import threading
 import time
 
+def log(*args) -> None:
+    print(*args, file=sys.stderr)
+
 def process_provider(pname, results, fastest_provider):
     try:
-        print(f"[TRYING]:  {pname}")
+        log(f"[TRYING]:  {pname}")
         start_time = time.time()
         response = g4f.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -22,12 +25,12 @@ def process_provider(pname, results, fastest_provider):
         end_time = time.time()
         time_taken = end_time - start_time
         results.append((pname, end_time - start_time))
-        print(f"[WORKING]: {pname}, Time taken: {time_taken:.2f} seconds")
+        log(f"[WORKING]: {pname}, Time taken: {time_taken:.2f} seconds")
         if time_taken < fastest_provider[1]:
             fastest_provider[0] = pname
             fastest_provider[1] = time_taken
     except Exception as e:
-        print(f"[BROKEN]:  {pname}, Error: {str(e)}")
+        log(f"[BROKEN]:  {pname}, Error: {str(e)}")
 
 providers = g4f.Provider.__all__
 
@@ -44,11 +47,12 @@ for thread in threads:
     thread.join()
 
 
-print("====== WORKING PROVIDERS ======")
+log("====== WORKING PROVIDERS ======")
 for pname, time_taken in results:
-    print(f"{pname:<20} {time_taken:.2f}s")
+    print(pname)
+    log(f"{pname:<20} {time_taken:.2f}s")
 
-print("====== FASTEST PROVIDER ======")
-print(f"{fastest_provider[0]:<20} {fastest_provider[1]:.2f}s")
+log("====== FASTEST PROVIDER ======")
+log(f"{fastest_provider[0]:<20} {fastest_provider[1]:.2f}s")
 
-print(f"====== {len(results)}/{len(providers)} WORKING ======")
+log(f"====== {len(results)}/{len(providers)} WORKING ======")
