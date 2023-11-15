@@ -9,10 +9,19 @@ import time
 def process_provider(pname, results, fastest_provider):
     try:
         print(f"[TRYING]:  {pname}")
+        llm = getattr(getattr(getattr(sys.modules[__name__], "g4f"), "Provider"), pname)
+        
+        model = "gpt-3.5-turbo" # "gpt-4"
+        
+        if model == "gpt-4" and not llm.supports_gpt_4:
+            raise Exception(f"{pname} does not support GPT4")
+        if model == "gpt-3.5-turbo" and not llm.supports_gpt_35_turbo:
+            raise Exception(f"{pname} does not support GPT-3.5-turbo")
+            
         start_time = time.time()
         response = g4f.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            provider=getattr(getattr(getattr(sys.modules[__name__], "g4f"), "Provider"), pname),
+            model=model,
+            provider=llm,
             messages=[{"role": "user", "content": "Hello"}],
         )
         if (response.strip() == ''):
